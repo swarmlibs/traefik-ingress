@@ -1,0 +1,25 @@
+services:
+  server:
+    image: traefik:v2.11
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    configs:
+      - source: traefik.yml
+        target: /etc/traefik/traefik.yml
+
+  whoami:
+    image: "traefik/whoami"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami.entrypoints=web"
+        - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+        - "traefik.http.services.whoami.loadbalancer.server.port=80"
+
+configs:
+  traefik.yml:
+    file: rootfs/traefik.yml
