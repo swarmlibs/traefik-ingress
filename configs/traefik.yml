@@ -25,7 +25,7 @@ certificatesResolvers:
         entryPoint: http
 
 providers:
-  docker: # traefik < v3.0
+  docker: # traefik >= 2.0 < 3.0
     # endpoint: "unix:///var/run/docker.sock"
     endpoint: "http://dockerswarm_sd_server:9093"
     swarmMode: true
