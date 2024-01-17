@@ -1,7 +1,11 @@
 # traefik-ingress
 An ingress service using Traefik Edge Router
 
-## Usage
+## Traefik & Docker 
+
+More information on Traefik and Docker can be found [here](https://docs.traefik.io/providers/docker/).
+
+## Deploying Traefik
 
 > WIP
 
