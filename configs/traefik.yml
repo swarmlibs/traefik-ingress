@@ -49,18 +49,18 @@ api:
 log:
   level: INFO
 
-accessLog:
-  # filePath: "/dev/stdout"
-  fields:
-    defaultMode: keep
-    names:
-      ClientUsername: drop
-    headers:
-      defaultMode: keep
-      names:
-        Authorization: keep
-        User-Agent: keep
-        Content-Type: keep
+# accessLog:
+#   # filePath: "/dev/stdout"
+#   fields:
+#     defaultMode: keep
+#     names:
+#       ClientUsername: drop
+#     headers:
+#       defaultMode: keep
+#       names:
+#         Authorization: keep
+#         User-Agent: keep
+#         Content-Type: keep
 
 metrics:
   prometheus:
