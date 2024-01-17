@@ -14,9 +14,6 @@ x-logging: &x-logging
 services:
   traefik:
     image: traefik:v2.11
-    networks:
-      - traefik_ingress
-      - dockerswarm_sd_network
     ports:
       # HTTP/HTTPS
       - mode: host
@@ -28,10 +25,10 @@ services:
         published: 443
         protocol: tcp
       # Traefik Dashboard
-      - mode: host
-        target: 8080
-        published: 8080
-        protocol: tcp
+      - 8080:8080
+    networks:
+      - traefik_ingress
+      - dockerswarm_sd_network
     configs:
       - source: traefik.yml
         target: /etc/traefik/traefik.yml
