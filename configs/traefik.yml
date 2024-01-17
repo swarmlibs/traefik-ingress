@@ -12,6 +12,20 @@ entryPoints:
   metrics:
     address: :8082
 
+certificatesResolvers:
+  acme-production:
+    acme:
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      storage: "/acme/acme-production.json"
+      httpChallenge:
+        entryPoint: http
+  acme-staging:
+    acme:
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      storage: "/acme/acme-staging.json"
+      httpChallenge:
+        entryPoint: http
+
 providers:
   docker: # traefik < v3.0
     # endpoint: "unix:///var/run/docker.sock"

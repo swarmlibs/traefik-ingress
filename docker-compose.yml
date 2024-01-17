@@ -14,6 +14,13 @@ x-logging: &x-logging
 services:
   traefik:
     image: traefik:v2.11
+    environment:
+      # ACME TLS Production
+      - TRAEFIK_CERTIFICATESRESOLVERS_ACME_PRODUCTION_ACME_EMAIL
+      - TRAEFIK_CERTIFICATESRESOLVERS_ACME_PRODUCTION_ACME_CASERVER
+      # ACME TLS Production
+      - TRAEFIK_CERTIFICATESRESOLVERS_ACME_STAGING_ACME_EMAIL
+      - TRAEFIK_CERTIFICATESRESOLVERS_ACME_STAGING_ACME_CASERVER
     ports:
       # HTTP/HTTPS
       - mode: host
@@ -32,12 +39,17 @@ services:
     configs:
       - source: traefik.yml
         target: /etc/traefik/traefik.yml
+    volumes:
+      - acme:/acme
     deploy: *x-deploy
     logging: *x-logging
 
 configs:
   traefik.yml:
     file: configs/traefik.yml
+
+volumes:
+  acme:
 
 networks:
   traefik_ingress: # Traefik Ingress Network
