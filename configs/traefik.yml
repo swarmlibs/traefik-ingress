@@ -9,8 +9,6 @@ entryPoints:
     #       scheme: https
   https:
     address: ":443"
-  metrics:
-    address: :8082
 
 certificatesResolvers:
   acme-production:
@@ -66,7 +64,12 @@ accessLog:
 
 metrics:
   prometheus:
-    entryPoint: metrics
+    manualRouting: true
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
 
 global:
   checkNewVersion: false
