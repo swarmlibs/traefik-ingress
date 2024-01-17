@@ -11,18 +11,16 @@ entryPoints:
     address: ":443"
 
 certificatesResolvers:
-  acme-production:
+  letsencrypt-production:
     acme:
       # caServer: "https://acme-v02.api.letsencrypt.org/directory"
-      caServer: "{{ env "TRAEFIK_CERTIFICATESRESOLVERS_ACME_PRODUCTION_ACME_CASERVER" }}"
-      storage: "/acme/acme-production.json"
+      storage: "/acme/letsencrypt-production.json"
       httpChallenge:
         entryPoint: http
-  acme-staging:
+  letsencrypt-staging:
     acme:
       # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-      caServer: "{{ env "TRAEFIK_CERTIFICATESRESOLVERS_ACME_STAGING_ACME_CASERVER" }}"
-      storage: "/acme/acme-staging.json"
+      storage: "/acme/letsencrypt-staging.json"
       httpChallenge:
         entryPoint: http
 
