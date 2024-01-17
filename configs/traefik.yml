@@ -9,6 +9,8 @@ entryPoints:
     #       scheme: https
   https:
     address: ":443"
+  metrics:
+    address: :8082
 
 providers:
   docker: # traefik < v3.0
@@ -51,3 +53,7 @@ accessLog:
         Authorization: keep
         User-Agent: keep
         Content-Type: keep
+
+metrics:
+  prometheus:
+    entryPoint: metrics
