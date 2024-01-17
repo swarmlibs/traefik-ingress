@@ -29,10 +29,6 @@ providers:
   #   defaultRule: "Host(`{{ .Spec.Name }}`)"
   #   allowEmptyServices: true
 
-global:
-  checkNewVersion: false
-  sendAnonymousUsage: false
-
 api:
   dashboard: true
   insecure: true
@@ -42,7 +38,7 @@ log:
   level: INFO
 
 accessLog:
-  filePath: "/dev/stdout"
+  # filePath: "/dev/stdout"
   fields:
     defaultMode: keep
     names:
@@ -57,3 +53,7 @@ accessLog:
 metrics:
   prometheus:
     entryPoint: metrics
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
