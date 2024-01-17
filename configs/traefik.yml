@@ -13,13 +13,15 @@ entryPoints:
 certificatesResolvers:
   acme-production:
     acme:
-      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      # caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      caServer: "{{ env "TRAEFIK_CERTIFICATESRESOLVERS_ACME_PRODUCTION_ACME_CASERVER" }}"
       storage: "/acme/acme-production.json"
       httpChallenge:
         entryPoint: http
   acme-staging:
     acme:
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      caServer: "{{ env "TRAEFIK_CERTIFICATESRESOLVERS_ACME_STAGING_ACME_CASERVER" }}"
       storage: "/acme/acme-staging.json"
       httpChallenge:
         entryPoint: http
@@ -31,14 +33,14 @@ providers:
     swarmMode: true
     network: "traefik_ingress"
     exposedByDefault: false
-    defaultRule: "Host(`{{ .Spec.Name }}`)"
+    defaultRule: "Host(`{{`{{ .Spec.Name }}`}}`)"
     allowEmptyServices: true
   # swarm: # traefik >= v3.0
   #   endpoint: "unix:///var/run/docker.sock"
   #   # endpoint: "http://dockerswarm_sd_server:9093"
   #   network: "traefik_ingress"
   #   exposedByDefault: false
-  #   defaultRule: "Host(`{{ .Spec.Name }}`)"
+  #   defaultRule: "Host(`{{`{{ .Spec.Name }}`}}`)"
   #   allowEmptyServices: true
 
 api:

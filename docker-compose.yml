@@ -47,6 +47,7 @@ services:
 configs:
   traefik.yml:
     file: configs/traefik.yml
+    template_driver: golang
 
 volumes:
   acme:
