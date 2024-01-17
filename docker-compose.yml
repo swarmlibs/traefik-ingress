@@ -1,25 +1,51 @@
+x-deploy: &x-deploy
+  replicas: 1
+  placement:
+    max_replicas_per_node: 1
+    constraints:
+      - node.role == manager
+
+x-logging: &x-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
-  server:
+  traefik:
     image: traefik:v2.11
+    networks:
+      - traefik_ingress
+      - dockerswarm_sd_network
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
+      # HTTP/HTTPS
+      - mode: host
+        target: 80
+        published: 80
+        protocol: tcp
+      - mode: host
+        target: 443
+        published: 443
+        protocol: tcp
+      # Traefik Dashboard
+      - mode: host
+        target: 8080
+        published: 8080
+        protocol: tcp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     configs:
       - source: traefik.yml
         target: /etc/traefik/traefik.yml
-
-  whoami:
-    image: "traefik/whoami"
-    deploy:
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.whoami.entrypoints=web"
-        - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-        - "traefik.http.services.whoami.loadbalancer.server.port=80"
+    deploy: *x-deploy
+    logging: *x-logging
 
 configs:
   traefik.yml:
-    file: rootfs/traefik.yml
+    file: configs/traefik.yml
+
+networks:
+  traefik_ingress: # Traefik Ingress Network
+    external: true
+  dockerswarm_sd_network: # Docker Swarm Service Discovery
+    external: true

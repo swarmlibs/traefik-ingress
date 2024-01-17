@@ -1,0 +1,53 @@
+entryPoints:
+  http:
+    address: ":80"
+    # uncomment if you want redirect to https
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
+  https:
+    address: ":443"
+
+providers:
+  docker: # traefik < v3.0
+    # endpoint: "unix:///var/run/docker.sock"
+    endpoint: "http://dockerswarm_sd_server:9093"
+    swarmMode: true
+    network: "traefik_ingress"
+    exposedByDefault: false
+    defaultRule: "Host(`{{ .Spec.Name }}`)"
+    allowEmptyServices: true
+  # swarm: # traefik >= v3.0
+  #   endpoint: "unix:///var/run/docker.sock"
+  #   # endpoint: "http://dockerswarm_sd_server:9093"
+  #   network: "traefik_ingress"
+  #   exposedByDefault: false
+  #   defaultRule: "Host(`{{ .Spec.Name }}`)"
+  #   allowEmptyServices: true
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+api:
+  dashboard: true
+  insecure: true
+  disabledashboardad: true
+
+log:
+  level: INFO
+
+accessLog:
+  filePath: "/dev/stdout"
+  fields:
+    defaultMode: keep
+    names:
+      ClientUsername: drop
+    headers:
+      defaultMode: keep
+      names:
+        Authorization: keep
+        User-Agent: keep
+        Content-Type: keep

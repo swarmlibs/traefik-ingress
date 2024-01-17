@@ -1,4 +1,4 @@
-docker_stack_name := dockerswarm_ingress
+docker_stack_name := traefik_example
 
 .EXPORT_ALL_VARIABLES:
 -include .env
@@ -8,9 +8,3 @@ deploy:
 
 teardown:
 	docker stack rm $(docker_stack_name)
-
-.PHONY: example
-example:
-	$(MAKE) -C example
-example/teardown:
-	$(MAKE) -C example teardown
