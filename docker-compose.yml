@@ -14,6 +14,9 @@ x-logging: &x-logging
 services:
   traefik:
     image: traefik:v2.11
+    command:
+      - --providers.file.watch=true
+      - --providers.file.directory=/traefik.d
     environment:
       # ACME TLS Production
       - TRAEFIK_CERTIFICATESRESOLVERS_ACME_PRODUCTION_ACME_EMAIL
