@@ -11,6 +11,6 @@ teardown:
 
 .PHONY: example
 example:
-	$(MAKE) -C example
+	@$(MAKE) -C example
 example/teardown:
-	$(MAKE) -C example teardown
+	@$(MAKE) -C example teardown
