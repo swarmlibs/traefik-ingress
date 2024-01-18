@@ -37,7 +37,7 @@ providers:
     swarmMode: true
     network: "traefik_ingress"
     exposedByDefault: false
-    defaultRule: "Host(`{{`{{ .Spec.Name }}`}}`)"
+    defaultRule: "Host(`{{`{{ .Spec.Name }}`}}.default.local`)"
     allowEmptyServices: true
   # swarm: # traefik >= v3.0
   #   endpoint: "unix:///var/run/docker.sock"
