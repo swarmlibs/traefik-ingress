@@ -23,6 +23,12 @@ certificatesResolvers:
       storage: "/acme/letsencrypt-staging.json"
       httpChallenge:
         entryPoint: http
+  # step-ca:
+  #   acme:
+  #     caServer: "https://step-ca.internal:9000/acme/acme/directory"
+  #     storage: "/acme/step-ca.json"
+  #     httpChallenge:
+  #       entryPoint: http
 
 providers:
   docker: # traefik >= 2.0 < 3.0
@@ -49,18 +55,18 @@ api:
 log:
   level: INFO
 
-# accessLog:
-#   # filePath: "/dev/stdout"
-#   fields:
-#     defaultMode: keep
-#     names:
-#       ClientUsername: drop
-#     headers:
-#       defaultMode: keep
-#       names:
-#         Authorization: keep
-#         User-Agent: keep
-#         Content-Type: keep
+accessLog:
+  # filePath: "/dev/stdout"
+  fields:
+    defaultMode: keep
+    names:
+      ClientUsername: drop
+    headers:
+      defaultMode: keep
+      names:
+        Authorization: keep
+        User-Agent: keep
+        Content-Type: keep
 
 metrics:
   prometheus:
