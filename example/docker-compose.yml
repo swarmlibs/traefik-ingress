@@ -8,8 +8,8 @@ services:
       labels:
         - traefik.enable=true
         # http
-        - traefik.http.routers.whoami-http.entrypoints=http
-        - traefik.http.routers.whoami-http.rule=Host(`whoami.localhost`)
+        - traefik.http.routers.whoami_http.entrypoints=http
+        - traefik.http.routers.whoami_http.rule=Host(`whoami.localhost`)
         # https
         - traefik.http.routers.whoami.tls=true
         - traefik.http.routers.whoami.entrypoints=https
@@ -19,8 +19,8 @@ services:
         # - traefik.http.routers.whoami.tls.certresolver=letsencrypt-staging
         # - traefik.http.routers.whoami.tls.certresolver=step-ca
         # http-to-https redirect
-        - traefik.http.routers.whoami-http.middlewares=whoami-redirectscheme
-        - traefik.http.middlewares.whoami-redirectscheme.redirectscheme.scheme=https
+        - traefik.http.routers.whoami_http.middlewares=whoami_redirectscheme
+        - traefik.http.middlewares.whoami_redirectscheme.redirectscheme.scheme=https
 
 networks:
   # Traefik Ingress Network
