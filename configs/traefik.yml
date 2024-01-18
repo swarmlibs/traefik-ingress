@@ -14,21 +14,21 @@ certificatesResolvers:
   letsencrypt-production:
     acme:
       # caServer: "https://acme-v02.api.letsencrypt.org/directory"
-      storage: "/acme/letsencrypt-production.json"
+      storage: "/certificates/letsencrypt-production.json"
       httpChallenge:
         entryPoint: http
   letsencrypt-staging:
     acme:
       # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-      storage: "/acme/letsencrypt-staging.json"
+      storage: "/certificates/letsencrypt-staging.json"
       httpChallenge:
         entryPoint: http
-  # step-ca:
-  #   acme:
-  #     caServer: "https://step-ca.internal:9000/acme/acme/directory"
-  #     storage: "/acme/step-ca.json"
-  #     httpChallenge:
-  #       entryPoint: http
+  step-ca:
+    acme:
+      caServer: "{{ env "TRAEFIK_CERTIFICATESRESOLVERS_STEP_CA_ACME_CASERVER" }}"
+      storage: "/certificates/step-ca.json"
+      httpChallenge:
+        entryPoint: http
 
 providers:
   docker: # traefik >= 2.0 < 3.0

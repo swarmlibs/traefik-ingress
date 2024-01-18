@@ -43,7 +43,7 @@ services:
       - source: traefik.yml
         target: /etc/traefik/traefik.yml
     volumes:
-      - acme:/acme
+      - certificates:/certificates
     deploy: *x-deploy
     logging: *x-logging
 
@@ -53,7 +53,7 @@ configs:
     template_driver: golang
 
 volumes:
-  acme:
+  certificates:
 
 networks:
   traefik_ingress: # Traefik Ingress Network
