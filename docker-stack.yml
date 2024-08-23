@@ -12,7 +12,7 @@ services:
       - --entryPoints.https.address=:443
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
-      - --log.level=DEBUG
+      - --log.level=INFO
       - --metrics.prometheus=true
       - --providers.swarm.allowEmptyServices=true
       - --providers.swarm.endpoint=unix:///var/run/docker.sock
