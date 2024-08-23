@@ -13,9 +13,6 @@ services:
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
       - --log.level=DEBUG
-      - --metrics.prometheus.addentrypointslabels=true
-      - --metrics.prometheus.addrouterslabels=true
-      - --metrics.prometheus.addserviceslabels=true
       - --metrics.prometheus=true
       - --providers.swarm.allowEmptyServices=true
       - --providers.swarm.endpoint=unix:///var/run/docker.sock
