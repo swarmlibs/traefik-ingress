@@ -17,7 +17,7 @@ services:
       - --providers.swarm.allowEmptyServices=true
       - --providers.swarm.endpoint=unix:///var/run/docker.sock
       - --providers.swarm.exposedByDefault=false
-      - --providers.swarm.network=traefik_ingress
+      - --providers.swarm.network=traefik-public
       - --providers.swarm.refreshSeconds=30
     ports:
       # The HTTP and HTTPS ports
@@ -46,7 +46,7 @@ services:
         source: letsencrypt
         target: /letsencrypt
     networks:
-      ingress:
+      traefik-public:
       public:
       prometheus:
     deploy:
@@ -59,7 +59,8 @@ services:
         io.prometheus.scrape_port: "8080"
 
 networks:
-  ingress:
+  traefik-public:
+    name: traefik-public
     driver: overlay
     attachable: true
   public:
