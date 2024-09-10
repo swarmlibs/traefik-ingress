@@ -17,8 +17,8 @@ While in Swarm Mode, Traefik uses labels found on services, not on individual co
 services:
   my-container:
     networks:
-      # Attach the service to the traefik_ingress network
-      traefik_ingress:
+      # Attach the service to the traefik-public network
+      traefik-public:
     deploy:
       labels:
         # Enable Traefik for this service
@@ -26,9 +26,9 @@ services:
         - traefik.http.routers.my-container.rule=Host(`example.com`)
         - traefik.http.services.my-container-service.loadbalancer.server.port=8080
 
-# Define the traefik_ingress network
+# Define the traefik-public network
 networks:
-  traefik_ingress:
-    name: traefik_ingress
+  traefik-public:
+    name: traefik-public
     external: true
 ```
