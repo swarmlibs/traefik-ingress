@@ -7,7 +7,17 @@ More information on Traefik and Docker can be found [here](https://docs.traefik.
 
 ## Deploying Traefik
 
-> WIP
+First, retrieve the stack YML manifest:
+
+```sh
+curl -L https://raw.githubusercontent.com/swarmlibs/traefik-ingress/main/docker-stack.yml -o traefik-ingress-stack.yml
+```
+
+Then use the downloaded YML manifest to deploy your stack:
+
+```sh
+docker stack deploy -c traefik-ingress-stack.yml traefik
+```
 
 ### Deploying / Exposing Services
 
