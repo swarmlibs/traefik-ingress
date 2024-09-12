@@ -43,7 +43,9 @@ services:
       labels:
         # Enable Traefik for this service
         - traefik.enable=true
+        # Define the router/service
         - traefik.http.routers.my-container.rule=Host(`example.com`)
+        # - traefik.http.routers.my-container.service=my-container-service # optional, if only one service is defined
         - traefik.http.services.my-container-service.loadbalancer.server.port=8080
         # Enable TLS (optional)
         - traefik.http.routers.my-container.tls=true
