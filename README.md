@@ -1,5 +1,5 @@
-# traefik-ingress
-An ingress service using Traefik Edge Router
+# About
+An ingress service using Traefik Edge Router for Docker Swarm
 
 ## Traefik & Docker 
 
