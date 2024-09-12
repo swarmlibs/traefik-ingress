@@ -39,6 +39,10 @@ services:
       - target: 8080
         published: 8080
         protocol: tcp
+    networks:
+      traefik-public:
+      public:
+      prometheus:
     volumes:
       - type: bind
         source: /var/run/docker.sock
@@ -47,10 +51,6 @@ services:
       - type: volume
         source: letsencrypt
         target: /letsencrypt
-    networks:
-      traefik-public:
-      public:
-      prometheus:
     deploy:
       placement:
         constraints:
@@ -59,6 +59,23 @@ services:
         io.prometheus.enabled: "true"
         io.prometheus.job_name: "traefik"
         io.prometheus.scrape_port: "8080"
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        delay: 10s
+        parallelism: 1
+        failure_action: rollback
+        monitor: 60s
+        max_failure_ratio: 0.3
+      rollback_config:
+        delay: 0s
+        parallelism: 1
+        failure_action: continue
+        monitor: 0s
+        max_failure_ratio: 0
 
 networks:
   traefik-public:
