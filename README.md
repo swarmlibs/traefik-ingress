@@ -25,15 +25,11 @@ docker stack deploy -c traefik-ingress-stack.yml traefik
   <img src="https://github.com/user-attachments/assets/35032fbe-dace-4438-92e1-71c33c31924e">
 </picture>
 
-## Usage
-
-> WIP
-
-### Accessing the Dashboard
+## Accessing the Dashboard
 
 The Traefik dashboard is available at `http://<traefik-ip>:8080`.
 
-### Deploying / Exposing Services
+## Deploying / Exposing Services
 
 While in Swarm Mode, Traefik uses labels found on services, not on individual containers. Therefore, if you use a compose file with Swarm Mode, labels should be defined in the deploy part of your service. This behavior is only enabled for docker-compose version 3+ ([Compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy)).
 
@@ -59,3 +55,5 @@ networks:
     name: traefik-public
     external: true
 ```
+
+Read more about Traefik labels [here](https://doc.traefik.io/traefik/routing/providers/swarm/).
