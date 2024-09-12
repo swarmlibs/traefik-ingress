@@ -1,11 +1,9 @@
 # About
-An ingress service using Traefik Edge Router for Docker Swarm
 
-## Traefik & Docker 
-
+An ingress service using Traefik Edge Router for Docker Swarm.
 More information on Traefik and Docker can be found [here](https://docs.traefik.io/providers/docker/).
 
-## Deploying Traefik
+## Deploying the stack
 
 First, retrieve the stack YML manifest:
 
@@ -18,6 +16,18 @@ Then use the downloaded YML manifest to deploy your stack:
 ```sh
 docker stack deploy -c traefik-ingress-stack.yml traefik
 ```
+
+## Overviews
+
+> WIP
+
+## Usage
+
+> WIP
+
+### Accessing the Dashboard
+
+The Traefik dashboard is available at `http://<traefik-ip>:8080`.
 
 ### Deploying / Exposing Services
 
@@ -35,6 +45,9 @@ services:
         - traefik.enable=true
         - traefik.http.routers.my-container.rule=Host(`example.com`)
         - traefik.http.services.my-container-service.loadbalancer.server.port=8080
+        # Enable TLS (optional)
+        - traefik.http.routers.my-container.tls=true
+        - traefik.http.routers.my-container.tls.certresolver=letsencrypt # or letsencrypt-staging
 
 # Define the traefik-public network
 networks:
