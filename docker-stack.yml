@@ -8,8 +8,10 @@ services:
       - --api.insecure=true
       - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/letsencrypt.json
       - --certificatesresolvers.letsencrypt-staging.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.letsencrypt-staging.acme.httpchallenge.entrypoint=http
+      - --certificatesresolvers.letsencrypt-staging.acme.storage=/letsencrypt/letsencrypt-staging.json
       - --entryPoints.http.address=:80
       - --entryPoints.https.address=:443
       - --global.checknewversion=false
