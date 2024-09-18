@@ -18,11 +18,12 @@ services:
         published: 443
         protocol: udp
         mode: host
-      # The traefik dashboard
+      # The Traefik dashboard
       - target: 8080
         published: 8080
         protocol: tcp
         mode: host
+      # The HAProxy stats
       - target: 8404
         published: 8404
         protocol: tcp
