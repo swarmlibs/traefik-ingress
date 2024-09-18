@@ -19,7 +19,7 @@ services:
     - --providers.swarm.allowEmptyServices=true
     - --providers.swarm.endpoint=unix:///var/run/docker.sock
     - --providers.swarm.exposedByDefault=false
-    - --providers.swarm.network=traefik
+    - --providers.swarm.network=public
     - --providers.swarm.refreshSeconds=30
     deploy:
       labels:
