@@ -82,7 +82,8 @@ stack-deploy:
 	@echo '      / / / / / /_/ / /  /  __(__  |__  ) '
 	@echo '     /_/_/ /_/\__, /_/   \___/____/____/  '
 	@echo '             /____/                       '
-	@echo "==> Deploying traefik ingress stack:"
+	@echo '                                          '
+	@echo "==> Deploying Traefik ingress stack:"
 	@$(DOCKER_STACK) deploy $(DOCKER_STACK_DEPLOY_ARGS) --prune $(DOCKER_STACK_FILES) $(DOCKER_STACK_NAMESPACE)
 stack-upgrade:
 	@$(DOCKER_STACK) deploy $(DOCKER_STACK_DEPLOY_ARGS) --prune --resolve-image always $(DOCKER_STACK_FILES) $(DOCKER_STACK_NAMESPACE)
