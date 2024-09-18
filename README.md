@@ -1,3 +1,6 @@
+> [!WARNING]
+> This stack is still in a work-in-progress state. Please use with caution.
+
 # About
 
 An ingress service using Traefik Edge Router for Docker Swarm. 
