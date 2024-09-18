@@ -1,7 +1,15 @@
 # About
 
-An ingress service using Traefik Edge Router for Docker Swarm.
+An ingress service using Traefik Edge Router for Docker Swarm. 
+
 More information on Traefik and Docker can be found [here](https://docs.traefik.io/providers/docker/).
+
+> [!IMPORTANT]
+> This stack requires [swarmlibs/traefik-loadbalancer](https://github.com/swarmlibs/traefik-loadbalancer) stack.
+> 
+> As a note before you can use Traefik as an ingress, you must have the Traefik Load Balancer stack deployed.
+> 
+> ***The deployment of these stacks can be done in any order.***
 
 ## Deploying the stack
 
