@@ -37,8 +37,8 @@ While in Swarm Mode, Traefik uses labels found on services, not on individual co
 services:
   my-container:
     networks:
-      # Attach the service to the traefik-public network
-      traefik-public:
+      # Attach the service to the public network
+      public:
     deploy:
       labels:
         # Enable Traefik for this service
@@ -51,10 +51,10 @@ services:
         - traefik.http.routers.my-container.tls=true
         - traefik.http.routers.my-container.tls.certresolver=letsencrypt # or letsencrypt-staging
 
-# Define the traefik-public network
+# Define the "public" network
 networks:
-  traefik-public:
-    name: traefik-public
+  public:
+    name: public
     external: true
 ```
 
