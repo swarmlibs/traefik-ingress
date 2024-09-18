@@ -34,9 +34,9 @@ docker stack deploy -c traefik-ingress-stack.yml traefik
 ## Overviews
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/d771579c-ea33-44dd-985d-24c742a22a11">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/35032fbe-dace-4438-92e1-71c33c31924e">
-  <img src="https://github.com/user-attachments/assets/35032fbe-dace-4438-92e1-71c33c31924e">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/fe5aed1d-a6ed-49f5-9e6a-25223ce326cc">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/78894be1-585a-4e51-ad88-f8fc49668e6e">
+  <img src="https://github.com/user-attachments/assets/78894be1-585a-4e51-ad88-f8fc49668e6e">
 </picture>
 
 ## Accessing the Dashboard
