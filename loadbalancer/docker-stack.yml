@@ -57,5 +57,5 @@ networks:
   traefik: {}
 configs:
   haproxy.cfg:
-    name: traefik-loadbalancer-config-v1
+    name: traefik-ingress-loadbalancer-config-v1
     file: ./configs/haproxy.cfg

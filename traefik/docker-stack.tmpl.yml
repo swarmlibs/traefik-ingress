@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/swarmlibs/dockerstack-schema/main/schema/dockerstack-spec.json
 
 services:
-  ingress:
+  traefik:
     image: ${TRAEFIK_INGRESS_IMAGE:-traefik:3.0}
     command:
       - --api.dashboard=true
@@ -43,6 +43,8 @@ services:
     #     protocol: tcp
     networks:
       traefik:
+        aliases:
+          - traefik.internal
       public:
       prometheus:
     volumes:
@@ -55,6 +57,7 @@ services:
         target: /letsencrypt
     deploy:
       replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.role == manager

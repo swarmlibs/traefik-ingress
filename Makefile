@@ -1,7 +1,7 @@
 detach := true
 
 DOCKER_STACK := docker stack
-DOCKER_STACK_NAMESPACE := traefik
+DOCKER_STACK_NAMESPACE := traefik-ingress
 DOCKER_STACK_CONFIG := docker stack config
 DOCKER_STACK_CONFIG_ARGS := --skip-interpolation
 DOCKER_STACK_DEPLOY_ARGS := --detach=$(detach) --with-registry-auth
@@ -42,21 +42,21 @@ $(1)/clean:
 	@rm -rf $(1)/docker-stack-config.yml || true
 endef
 
-$(eval $(call docker-stack-config,ingress))
 $(eval $(call docker-stack-config,loadbalancer))
+$(eval $(call docker-stack-config,traefik))
 
 docker-stack.yml:
 	$(DOCKER_STACK_CONFIG) $(DOCKER_STACK_CONFIG_ARGS) \
-		-c ingress/docker-stack-config.yml \
 		-c loadbalancer/docker-stack-config.yml \
+		-c traefik/docker-stack-config.yml \
 	> docker-stack.yml.tmp
 	@sed "s|$(PWD)/|./|g" docker-stack.yml.tmp > docker-stack.yml
 	@rm docker-stack.yml.tmp
 	@rm **/docker-stack-config.yml
 
 compile: \
-	ingress/docker-stack.yml \
 	loadbalancer/docker-stack.yml \
+	traefik/docker-stack.yml \
 	docker-stack.yml
 
 print:
