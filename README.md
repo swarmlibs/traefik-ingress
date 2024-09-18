@@ -11,7 +11,7 @@ First, retrieve the stack YML manifest:
 curl -L https://raw.githubusercontent.com/swarmlibs/traefik-ingress/main/docker-stack.yml -o traefik-ingress-stack.yml
 ```
 
-Create the following networks:
+Create the following networks (if they don't already exist):
 ```sh
 docker network create --driver=overlay --attachable public
 docker network create --driver=overlay --attachable traefik
