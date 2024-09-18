@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/swarmlibs/dockerstack-schema/main/schema/dockerstack-spec.json
+
+services:
+  loadbalancer:
+    image: ${TRAEFIK_LOADBALANCER_IMAGE:-haproxy:3.0}
+    user: 0:0
+    ports:
+      # The HTTP and HTTPS ports
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: udp
+        mode: host
+      # The traefik dashboard
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+      - target: 8404
+        published: 8404
+        protocol: tcp
+        mode: host
+    networks:
+      traefik:
+      prometheus:
+    configs:
+      - source: haproxy.cfg
+        target: /usr/local/etc/haproxy/haproxy.cfg
+    deploy:
+      mode: global
+      labels:
+        io.prometheus.enabled: "true"
+        io.prometheus.job_name: "haproxy"
+        io.prometheus.scrape_port: "8405"
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        delay: 10s
+        parallelism: 1
+        failure_action: rollback
+        monitor: 60s
+        max_failure_ratio: 0.3
+      rollback_config:
+        delay: 0s
+        parallelism: 1
+        failure_action: continue
+        monitor: 0s
+        max_failure_ratio: 0
+
+networks:
+  traefik:
+  prometheus:
+    name: prometheus
+    external: true
+
+configs:
+  haproxy.cfg:
+    name: traefik-loadbalancer-config-v1
+    file: ./configs/haproxy.cfg

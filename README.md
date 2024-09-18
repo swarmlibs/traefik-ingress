@@ -23,6 +23,7 @@ Create the following networks (if they don't already exist):
 ```sh
 docker network create --driver=overlay --attachable public
 docker network create --driver=overlay --attachable traefik
+docker network create --driver=overlay --attachable prometheus
 ```
 
 Then use the downloaded YML manifest to deploy your stack:
