@@ -28,7 +28,7 @@ docker network create --driver=overlay --attachable traefik
 Then use the downloaded YML manifest to deploy your stack:
 
 ```sh
-docker stack deploy -c traefik-ingress-stack.yml traefik
+docker stack deploy -c traefik-ingress-stack.yml traefik-ingress
 ```
 
 ## Overviews
