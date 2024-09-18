@@ -2,7 +2,7 @@
 
 services:
   traefik:
-    image: traefik:v3.1
+    image: ${TRAEFIK_INGRESS_IMAGE:-traefik:3.0}
     command:
       - --api.dashboard=true
       - --api.insecure=true

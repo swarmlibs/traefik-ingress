@@ -14,7 +14,7 @@ ifneq ("$(wildcard docker-stack.override.yml)","")
 endif
 
 .EXPORT_ALL_VARIABLES:
--include .dockerenv
+include .dockerenv
 -include .env
 
 make:
