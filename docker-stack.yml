@@ -19,7 +19,7 @@ services:
     - --providers.swarm.allowEmptyServices=true
     - --providers.swarm.endpoint=unix:///var/run/docker.sock
     - --providers.swarm.exposedByDefault=false
-    - --providers.swarm.network=traefik-public
+    - --providers.swarm.network=traefik
     - --providers.swarm.refreshSeconds=30
     deploy:
       labels:
@@ -47,7 +47,7 @@ services:
     networks:
       prometheus: null
       public: null
-      traefik-public: null
+      traefik: null
     ports:
     - mode: host
       target: 80
@@ -79,8 +79,8 @@ networks:
   public:
     name: public
     external: true
-  traefik-public:
-    name: traefik-public
+  traefik:
+    name: traefik
     driver: overlay
     attachable: true
 volumes:
