@@ -20,7 +20,6 @@ curl -L https://raw.githubusercontent.com/swarmlibs/traefik-ingress/main/docker-
 Create the following networks (if they don't already exist):
 ```sh
 docker network create --driver=overlay --attachable public
-docker network create --driver=overlay --attachable traefik
 docker network create --driver=overlay --attachable prometheus
 ```
 
