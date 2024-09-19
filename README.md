@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/a32788db-6266-45d0-8180-b7cce9997e0f" width="256px" />
+<img src=".github/assets/traefik.png" width="256px" />
 
 
 # About
