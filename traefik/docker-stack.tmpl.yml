@@ -87,8 +87,6 @@ services:
 
 networks:
   traefik:
-    name: traefik
-    external: true
   public:
     name: public
     external: true

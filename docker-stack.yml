@@ -119,9 +119,7 @@ networks:
   public:
     name: public
     external: true
-  traefik:
-    name: traefik
-    external: true
+  traefik: {}
 volumes:
   letsencrypt: {}
 configs:
