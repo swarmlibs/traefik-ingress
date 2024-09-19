@@ -1,12 +1,12 @@
 <img src="https://github.com/user-attachments/assets/a32788db-6266-45d0-8180-b7cce9997e0f" width="256px" />
 
-> [!WARNING]
-> This stack is still in a work-in-progress state. Please use with caution.
 
 # About
 
-An ingress service using Traefik Edge Router for Docker Swarm. 
+> [!WARNING]
+> This stack is still in a work-in-progress state. Please use with caution.
 
+An ingress service using Traefik Edge Router for Docker Swarm. 
 More information on Traefik and Docker can be found [here](https://docs.traefik.io/providers/docker/).
 
 ## Deploying the stack
