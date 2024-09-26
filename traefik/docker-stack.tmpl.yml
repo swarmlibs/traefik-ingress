@@ -4,8 +4,9 @@ services:
   traefik:
     image: ${TRAEFIK_INGRESS_IMAGE:-traefik:3.0}
     command:
-      - --api.dashboard=true
-      - --api.insecure=true
+      - --accesslog=$${TRAEFIK_ACCESSLOG:-false}
+      - --api.dashboard=$${TRAEFIK_API_DASHBOARD:-false}
+      - --api.insecure=$${TRAEFIK_API_INSECURE:-false}
       - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
       - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/letsencrypt.json
@@ -13,7 +14,11 @@ services:
       - --certificatesresolvers.letsencrypt-staging.acme.httpchallenge.entrypoint=http
       - --certificatesresolvers.letsencrypt-staging.acme.storage=/letsencrypt/letsencrypt-staging.json
       - --entryPoints.http.address=:80
+      - --entryPoints.http.proxyProtocol.insecure=true
+      - --entryPoints.http.forwardedHeaders.insecure=true
       - --entryPoints.https.address=:443
+      - --entryPoints.https.proxyProtocol.insecure=true
+      - --entryPoints.https.forwardedHeaders.insecure=true
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
       - --log.level=INFO
@@ -57,7 +62,6 @@ services:
         target: /letsencrypt
     deploy:
       replicas: 1
-      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.role == manager
