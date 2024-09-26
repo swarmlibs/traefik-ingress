@@ -3,8 +3,8 @@ services:
   traefik:
     command:
     - --accesslog=${TRAEFIK_ACCESSLOG:-false}
-    - --api.dashboard=${TRAEFIK_API_DASHBOARD:-false}
-    - --api.insecure=${TRAEFIK_API_INSECURE:-false}
+    - --api.dashboard=${TRAEFIK_API_DASHBOARD:-true}
+    - --api.insecure=${TRAEFIK_API_INSECURE:-true}
     - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
     - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
     - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/letsencrypt.json
