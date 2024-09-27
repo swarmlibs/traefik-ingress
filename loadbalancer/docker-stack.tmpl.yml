@@ -35,6 +35,12 @@ services:
     configs:
       - source: haproxy.cfg
         target: /usr/local/etc/haproxy/haproxy.cfg
+    healthcheck:
+      test: ["CMD", "haproxy", "-c", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 10s
     deploy:
       mode: global
       labels:

@@ -1,6 +1,7 @@
 services:
   traefik:
     command:
+    - --ping=true
     - --accesslog=${TRAEFIK_ACCESSLOG:-false}
     - --api.dashboard=${TRAEFIK_API_DASHBOARD:-true}
     - --api.insecure=${TRAEFIK_API_INSECURE:-true}
@@ -51,6 +52,16 @@ services:
         constraints:
         - node.role == manager
     hostname: replica-{{.Task.Slot}}.traefik.internal
+    healthcheck:
+      test:
+      - CMD
+      - traefik
+      - healthcheck
+      - --ping
+      timeout: 2s
+      interval: 5s
+      retries: 3
+      start_period: 10s
     image: traefik:3.0
     networks:
       prometheus: null

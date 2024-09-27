@@ -4,6 +4,7 @@ services:
   traefik:
     image: ${TRAEFIK_INGRESS_IMAGE:-traefik:3.0}
     command:
+      - --ping=true
       - --accesslog=$${TRAEFIK_ACCESSLOG:-false}
       - --api.dashboard=$${TRAEFIK_API_DASHBOARD:-true}
       - --api.insecure=$${TRAEFIK_API_INSECURE:-true}
@@ -61,6 +62,12 @@ services:
       - type: volume
         source: letsencrypt
         target: /letsencrypt
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 10s
     deploy:
       replicas: 1
       placement:

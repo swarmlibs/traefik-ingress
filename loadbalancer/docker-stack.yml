@@ -24,6 +24,17 @@ services:
         max_attempts: 3
         window: 2m0s
     hostname: replica-{{.Task.Slot}}.haproxy.internal
+    healthcheck:
+      test:
+      - CMD
+      - haproxy
+      - -c
+      - -f
+      - /usr/local/etc/haproxy/haproxy.cfg
+      timeout: 2s
+      interval: 5s
+      retries: 3
+      start_period: 10s
     image: haproxy:3.0
     networks:
       prometheus: null
