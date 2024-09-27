@@ -50,6 +50,7 @@ services:
       placement:
         constraints:
         - node.role == manager
+    hostname: replica-{{.Task.Slot}}.traefik.internal
     image: traefik:3.0
     networks:
       prometheus: null

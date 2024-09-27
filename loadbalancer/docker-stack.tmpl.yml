@@ -31,6 +31,7 @@ services:
     networks:
       traefik:
       prometheus:
+    hostname: "replica-{{.Task.Slot}}.haproxy.internal"
     configs:
       - source: haproxy.cfg
         target: /usr/local/etc/haproxy/haproxy.cfg

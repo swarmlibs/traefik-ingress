@@ -52,6 +52,7 @@ services:
           - traefik.internal
       public:
       prometheus:
+    hostname: "replica-{{.Task.Slot}}.traefik.internal"
     volumes:
       - type: bind
         source: /var/run/docker.sock
