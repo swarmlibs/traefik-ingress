@@ -19,7 +19,7 @@ services:
     - --entryPoints.https.forwardedHeaders.insecure=true
     - --global.checknewversion=false
     - --global.sendanonymoususage=false
-    - --log.level=INFO
+    - --log.level=${TRAEFIK_LOGLEVEL:-INFO}
     - --metrics.prometheus=true
     - --providers.swarm.allowEmptyServices=true
     - --providers.swarm.endpoint=unix:///var/run/docker.sock
