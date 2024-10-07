@@ -62,7 +62,9 @@ compile: \
 	docker-stack.yml
 
 print:
-	$(DOCKER_STACK_CONFIG) $(DOCKER_STACK_FILES)
+	$(DOCKER_STACK) config $(DOCKER_STACK_FILES)
+config:
+	$(DOCKER_STACK) config $(DOCKER_STACK_CONFIG_ARGS) $(DOCKER_STACK_FILES)
 
 clean:
 	@rm -rf docker-stack.yml || true
