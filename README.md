@@ -6,7 +6,8 @@
 > [!WARNING]
 > This stack is still in a work-in-progress state. Please use with caution.
 
-An ingress service using Traefik Edge Router for Docker Swarm. 
+An ingress service using Traefik Edge Router with LoadBalancer using HAProxy for Docker Swarm.
+
 More information on Traefik and Docker can be found [here](https://docs.traefik.io/providers/docker/).
 
 ## Deploying the stack
